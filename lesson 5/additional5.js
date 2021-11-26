@@ -37,17 +37,13 @@ numberList(8,6);
 let foo = [9,8,0,4];
 
 let indexSwapper = (arr, i) => {
-    let newArray = [];
-    for (let n = 0; n <= i; n++) {
-        newArray = arr;
-        newArray[n] = arr[i+1];
-        // newArray[n+1] = arr[i];
-
-    }
-    return newArray;
+    let n = arr[i];
+    arr[i] = arr[i+1];
+    arr[i+1] = n;
+    return arr;
 }
 
-console.log(indexSwapper(foo,0));
+console.log(indexSwapper(foo,2));
 
 // - Сворити функцію яка буде переносити елементи з значенням 0 у кінець маисву. Зберігаючи при цьому порядок не нульових значень.
 // Двожина масиву від 2 до 100
@@ -55,3 +51,22 @@ console.log(indexSwapper(foo,0));
 // [1,0,6,0,3] => [1,6,3,0,0]
 // [0,1,2,3,4] => [1,2,3,4,0]
 // [0,0,1,0]   => [1,0,0,0]
+
+let arrayWithNulls = [0,0,1,0];
+
+let nullsRemover = (arr, limit) => {
+    if (limit > 2 && limit < 100) {
+        for (let i of arr) {
+            if (arr[i] === 0) {
+                arr[i] = arr[i + 1];
+                arr.push(0);
+                arr[i + 1] = arr[limit];
+                arr[i+1] = arr[i-1];
+            } else {
+                arr[i] = arr[i];
+            }
+        }
+        }
+    return arr;
+}
+console.log(nullsRemover(arrayWithNulls, arrayWithNulls.length));
