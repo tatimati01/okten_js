@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .formContainer {
+            border: 1px darkblue solid;
+            padding: 10px;
+            width: 800px;
+        }
+
+        #form1, #form2 {
+            border: forestgreen 1px solid;
+            margin: 20px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="formContainer">
+    <form action="" id="form1">
+        <p>Enter your name</p>
+        <input type="text" name="form1Name">
+        <p>Enter your surname</p>
+        <input type="text" name="form1Surname">
+    </form>
+    <form action="" id="form2">
+        <p>Enter your friend's name</p>
+        <input type="text" name="form2Name">
+        <p>Enter your friend's surname</p>
+        <input type="text" name="form2Surname">
+    </form>
+    <button id="formSubmitBtn">Submit form</button>
+</div>
+<hr>
+<form name="tableCreator">
+    <p>Введіть кількість рядків у таблиці</p>
+    <input type="text" name="rowNumber">
+    <p>Введіть кількість комірок у таблиці</p>
+    <input type="text" name="columnNumber">
+    <p>Введіть вміст комірок</p>
+    <input type="text" name="cellContent">
+    <button id="tableBtn">Створити таблицю</button>
+
+</form>
+<hr>
+
+<input type="text" id="badWordsChecker">
+<button id="checkBtn">Перевірити слово</button>
+
+<hr>
+<input type="text" id="content">
+<button id="badCheck">Перевірити речення</button>
+
+
+<script src="classwork10.js">
+
+</script>
+
+</body>
+</html>

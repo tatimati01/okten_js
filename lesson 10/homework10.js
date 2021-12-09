@@ -16,14 +16,15 @@ btn2[0].onclick = function () {
 // - створити інпут який приймає вік людини та кнопку яка підтверджує дію.
 // При натисканні на кнопку зчитати інформацію з інпуту та перевірити вік чи меньше він ніж 18, та повідомити про це користувача
 
-let ageValue = document.getElementById('inputAge').value;
+
 let ageButton = document.getElementById('inputAgeButton');
 ageButton.onclick = function () {
-    if (!ageValue < 18) {
-        alert('Вам менше 18 років!')
-    } else if (+ageValue >= 18) {
+    let ageValue = document.getElementById('inputAge').value;
+    if (ageValue >= 18) {
         alert('Вам більше, ніж 18 років!')
-    } else if (ageValue !== 'number') {
+    } else if (ageValue < 18) {
+        alert('Вам менше 18 років!')
+    } else {
         alert('Введіть коректне значення віку')
     }
 }
