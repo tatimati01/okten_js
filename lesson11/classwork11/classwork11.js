@@ -16,7 +16,12 @@ let users = [
 // до масиву favorites улюблених обраних об'єктів в локальному сховищі.
 // Створити сторніку favorites.html при переході на яку потрібно вивест в документ всіх обраних на попередньому етапі.
 
-let mainDiv = document.getElementsByClassName('favorite-users');
+let mainDiv = document.createElement('div');
+mainDiv.classList.add('favorite-users');
+document.body.appendChild(mainDiv);
+mainDiv.style.border = '2px solid blue';
+mainDiv.style.padding = '10px';
+mainDiv.style.width = '400px';
 
 for (const user of users) {
     let div = document.createElement('div');
@@ -24,7 +29,7 @@ for (const user of users) {
     let btnFavorite = document.createElement('button');
     btnFavorite.innerText = 'Add to Favorite';
 
-    mainDiv[0].appendChild(div);
+    mainDiv.appendChild(div);
     div.appendChild(btnFavorite);
 
     btnFavorite.onclick = () => {
@@ -36,12 +41,9 @@ for (const user of users) {
 
 let btnGoToFav = document.createElement('button');
 btnGoToFav.innerText = 'Go to Favorites'
-// let aFavorite = document.createElement('a');
-// aFavorite.setAttribute('href','/favorites.html');
 
-mainDiv[0].appendChild(btnGoToFav);
-// btnGoToFav.appendChild(aFavorite);
+mainDiv.appendChild(btnGoToFav);
 
 btnGoToFav.onclick = () => {
-    location.href = '/favorites.html';
+    location.href = 'favorites.html';
 }
