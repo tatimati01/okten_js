@@ -41,7 +41,6 @@ for (const user of users) {
 
 let btnGoToFav = document.createElement('button');
 btnGoToFav.innerText = 'Go to Favorites'
-
 mainDiv.appendChild(btnGoToFav);
 
 btnGoToFav.onclick = () => {
