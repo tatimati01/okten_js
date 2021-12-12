@@ -29,7 +29,7 @@ let volume = document.forms.carForm.carVolume;
 let btn = document.getElementById('btn');
 
 let savingCar = (carModel,carType,carVolume) => {
-    let carsArray = JSON.parse(localStorage.getItem(carKey)) || [];
+    let carsArray = JSON.parse(localStorage.getItem('car key')) || [];
     let car = {
         model : carModel,
         type : carType,
@@ -42,22 +42,3 @@ let savingCar = (carModel,carType,carVolume) => {
 btn.onclick = () => {
     savingCar(model.value,type.value,volume.value)
 }
-console.log(carsArray);
-
-// let model = document.forms.carForm.carModel;
-// console.log(model);
-// let type = document.forms.carForm.carType;
-// let volume = document.forms.carForm.carVolume;
-// let btn = document.getElementById('btn');
-// let item = 'keyCar';
-//
-// let saveCar = (carModel, carType, carVolume) => {
-//     let newArr = JSON.parse(localStorage.getItem(item)) || [];
-//
-//     newArr.push({carModel, carType, carVolume})
-//     localStorage.setItem(item, JSON.stringify(newArr));
-// };
-//
-// btn.onclick = () => {
-//     saveCar(model.value, type.value, volume.value);
-// }
