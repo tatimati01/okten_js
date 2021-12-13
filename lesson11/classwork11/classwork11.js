@@ -44,5 +44,6 @@ btnGoToFav.innerText = 'Go to Favorites'
 mainDiv.appendChild(btnGoToFav);
 
 btnGoToFav.onclick = () => {
-    location.href = 'favorites.html';
+    let url = document.getElementById('aFovorites');
+    window.open(url)
 }
