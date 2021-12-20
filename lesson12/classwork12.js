@@ -7,7 +7,6 @@ let postsContainer = document.createElement('div');
 postsContainer.classList.add('postContainer');
 document.body.appendChild(postsContainer);
 
-
 fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
     .then(postsArray => {
@@ -24,28 +23,31 @@ fetch('https://jsonplaceholder.typicode.com/posts')
             let postButton = document.createElement('button');
             postButton.classList.add('postButton');
             postButton.innerText = 'Read comments';
+            let commentsContainer = document.createElement('div');
+            commentsContainer.classList.add('commentsContainer');
 
-            fetch('https://jsonplaceholder.typicode.com/comments')
-                .then(response => response.json())
-                .then(commentsArray => {
-                    for (const comment of commentsArray) {
-                        if (comment.postId === post.id) {
-                            let commentBox = document.createElement('div');
-                            commentBox.classList.add('commentBox');
-                            postBox.appendChild(commentBox);
-                            let commentTitle = document.createElement('h4');
-                            commentTitle.innerText = `${comment.name} (${comment.email})`;
-                            let commentBody = document.createElement('p');
-                            commentBody.innerText = comment.body;
-                            commentBox.append(commentTitle,commentBody);
+            postButton.onclick = () => {
+                fetch('https://jsonplaceholder.typicode.com/comments')
+                    .then(response => response.json())
+                    .then(commentsArray => {
+                        for (const comment of commentsArray) {
+                            if (comment.postId === post.id) {
+                                let commentBox = document.createElement('div');
+                                commentBox.classList.add('commentBox');
+                                commentsContainer.appendChild(commentBox);
+                                let commentTitle = document.createElement('h4');
+                                commentTitle.innerText = `${comment.name} (${comment.email})`;
+                                let commentBody = document.createElement('p');
+                                commentBody.innerText = comment.body;
+                                commentBox.append(commentTitle,commentBody);
 
-                            postButton.onclick = () => {
-                                commentBox.classList.toggle('openComments')
+                                commentsContainer.classList.toggle('openComments');
                             }
                         }
-                    }
-                })
+                    });
+            }
+
             postsContainer.appendChild(postBox);
-            postBox.append(postId,postTitle,postBody,postButton)
+            postBox.append(postId,postTitle,postBody,postButton,commentsContainer)
         }
-    })
+    });
