@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    //callback-functions
+
+    function wakeUp(alarmClock, brush) {
+        setTimeout(() => {
+            if (alarmClock) {
+                console.log(`Wake up! Brush your teeth and wash your face`);
+                brush(null, true);
+            } else {
+                brush('Weekend, keep sleeping', null);
+            }
+        }, 300)
+    }
+
+    function brushingTeeth(awake, goNext) {
+        setTimeout(() => {
+            if (awake) {
+                console.log('brush');
+                goNext(null, true)
+            } else {
+                goNext('Brush teeth when you wake up', null)
+            }
+        }, 500)
+    }
+
+    function doYoga(morningTime, hungry) {
+        setTimeout(() => {
+            if (morningTime) {
+                console.log('Do yoga! Oommmm');
+                hungry(null, true)
+            } else {
+                hungry('Sorry, not today :((', null)
+            }
+        }, 2000)
+    }
+
+    function cookSomeFood(needToCook, meal) {
+        setTimeout(() => {
+            if (needToCook) {
+                console.log('Let\'s cook something yummy!');
+                meal(null, 'Your meal is cooked')
+            } else {
+                meal('No food, no mood...', null)
+            }
+        }, 600)
+    }
+
+    function takeYourMeal(isMealCooked, energy) {
+        setTimeout(() => {
+            if (isMealCooked) {
+                console.log('yammy!')
+                energy(null, 'Ready for work!')
+            } else {
+                energy('Cook some food', null)
+            }
+        }, 2000)
+    }
+
+    function workHard(tasks, areTheTasksDone) {
+        setTimeout(() => {
+            if (tasks) {
+                console.log('Good job!');
+                areTheTasksDone(null, true)
+            } else {
+                areTheTasksDone('Very bad! Have to work at night.', null)
+            }
+        }, 3000);
+    }
+
+    function familyTime(freeTime, noWorkJustSleep) {
+        setTimeout(() => {
+            if (freeTime) {
+                console.log('<3 <3 <3');
+                noWorkJustSleep(null, 'sleepTime')
+            } else {
+                noWorkJustSleep(true,null)
+            }
+        }, 2000)
+    }
+
+    function goToBed(sleepTime,zZz) {
+        setTimeout(() => {
+            if (sleepTime) {
+                console.log('Time to take a shower and go to bed');
+                zZz(null,'goodnight')
+            } else {
+                zZz('Keep working, no time to sleep!',null)
+            }
+        }, 1000)
+    }
+
+
+    wakeUp(true, (err, brush) => {
+        if (err) {
+            console.log(err);
+        } else {
+            brushingTeeth(brush, (err1,yogaTime) => {
+                if (err1) {
+                    console.log(err1);
+                } else {
+                    doYoga(yogaTime, (err2,hungry) => {
+                        if (err2) {
+                            console.log(err2);
+                        } else {
+                            cookSomeFood(hungry, (err3,meal) => {
+                                if (err3) {
+                                    console.log(err3);
+                                } else {
+                                    takeYourMeal(meal, (err4,energy) => {
+                                        if (err4) {
+                                            console.log(err4);
+                                        } else {
+                                            workHard(energy, (err5,freeTime) => {
+                                                if (err5) {
+                                                    console.log(err5);
+                                                } else {
+                                                    familyTime(freeTime, (err6,bedTime) => {
+                                                        if (err6) {
+                                                            console.log(err6);
+                                                        } else {
+                                                            goToBed(bedTime, (err7,sleep) => {
+                                                                if (err7) {
+                                                                    console.log(err7);
+                                                                } else {
+                                                                    console.log(sleep);
+                                                                }
+                                                            })
+                                                        }
+                                                    })
+                                                }
+                                            })
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+    })
+    //promises
+
+    // function wakeUp(alarmClock) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             if (alarmClock) {
+    //                 resolve(`Wake up!`)
+    //             }
+    //             reject('Weekend, keep sleeping')
+    //         }, 300)
+    //     })
+    // }
+    //
+    // function brushingTeeth() {
+    //     return new Promise((resolve) => {
+    //         setTimeout(() => {
+    //             resolve('brush');
+    //         }, 500)
+    //     })
+    // }
+    //
+    // function doYoga(morningTime) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             if (morningTime) {
+    //                 resolve('Do yoga! Oommmm')
+    //             }
+    //             reject('Sorry, not today :((')
+    //         }, 2000)
+    //     })
+    // }
+    //
+    // function cookSomeFood(needToCook) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             if (needToCook) {
+    //                 resolve('Let\'s cook something yummy!')
+    //             }
+    //             reject('No food, no mood...')
+    //         })
+    //     })
+    // }
+    //
+    // function takeYourMeal(areYouHungry) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             if (areYouHungry) {
+    //                 resolve('yammy!')
+    //             }
+    //             reject('Cook some food')
+    //         }, 2000)
+    //     })
+    // }
+    //
+    // function workHard(areTheTasksDone) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             if (areTheTasksDone) {
+    //                 resolve('Good job!')
+    //             }
+    //             reject('Very bad! Have to work at night.')
+    //         }, 3000);
+    //     })
+    // }
+    //
+    // function familyTime() {
+    //     return new Promise(resolve => {
+    //         setTimeout(() => {
+    //             resolve('<3 <3 <3')
+    //         }, 2000)
+    //     })
+    // }
+    //
+    // function goToBed(freeTime) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(() => {
+    //             if (freeTime) {
+    //                 resolve('Time to take a shower and go to bed')
+    //             }
+    //             reject('Keep working, no time to sleep!')
+    //         }, 1000)
+    //     })
+    // }
+
+    // wakeUp(true)
+    //     .then(alarm => {
+    //         console.log(alarm);
+    //         console.log('Brush your teeth and wash your face');
+    //         return brushingTeeth('brush')
+    //     })
+    //     .then(brush => {
+    //         console.log(brush);
+    //         console.log('Now you\'re tidy!');
+    //         return doYoga(true)
+    //     })
+    //     .then(doYoga => {
+    //         console.log(doYoga);
+    //         console.log('Great! You are ready for a new day!');
+    //         return cookSomeFood(true)
+    //     })
+    //     .then(food => {
+    //         console.log(food);
+    //         console.log('cooking');
+    //         return takeYourMeal(true)
+    //     })
+    //     .then(hungry => {
+    //         console.log(hungry);
+    //         return workHard('work')
+    //     })
+    //     .then(work => {
+    //         console.log('work work work');
+    //         console.log(work);
+    //         return familyTime('evening')
+    //     })
+    //     .then(evening => {
+    //         console.log('Pay attention to your family')
+    //         console.log(evening);
+    //         return goToBed('Night time')
+    //     }).then(nightTime => {
+    //     console.log(nightTime);
+    //     }).catch(error => {
+    //         console.log(error);
+    // });
+
+    // async await functions
+
+    // async function myWorkingDay () {
+    //     const goToBathroom = await wakeUp(true);
+    //     console.log(goToBathroom);
+    //     const yogaTime = await brushingTeeth(goToBathroom);
+    //     console.log(yogaTime);
+    //     const cooking = await doYoga(yogaTime);
+    //     console.log(cooking);
+    //     const eating = await cookSomeFood(cooking);
+    //     console.log(eating);
+    //     const readyForWork = await takeYourMeal(eating);
+    //     console.log(readyForWork);
+    //     const workDone = await workHard(readyForWork);
+    //     console.log(workDone);
+    //     const timeToSleep = await familyTime(workDone);
+    //     console.log(timeToSleep);
+    //     const dayEnding = await goToBed(timeToSleep);
+    //     console.log(dayEnding);
+    // }
+    //
+    // myWorkingDay();
+
+
+</script>
+</body>
+</html>
