@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form</title>
+    <style>
+        p {
+            font-size: large;
+        }
+        .form_container {
+            margin: 10px;
+            padding: 20px;
+            border: lightgrey 2px solid;
+        }
+        .form_links {
+            margin-top: 30px;
+        }
+        #products_newpage {
+            font-size: larger;
+            color: darkblue;
+            font-weight: bold;
+        }
+        #products_newpage:hover {
+            color: darkred;
+        }
+        #save_products {
+            width: 80px;
+            height: 40px;
+            font-size: larger;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form_container">
+    <form name="product_form">
+        <p>Назва товару</p>
+        <input name="title_inp" type="text">
+        <p>Кількість товару</p>
+        <input name="quantity_inp" type="number">
+        <p>Ціна товару</p>
+        <input name="price_inp" type="number">
+        <p>Зображення товару</p>
+        <input name="image_inp" type="url">
+    </form>
+    <div class="form_links">
+        <button id="save_products">Save</button>
+        <a id="products_newpage" href='list.html'> На сторінку товарів</a></div>
+</div>
+
+<script>
+    // - Імітуємо наповнення інтернет магазину товарами :
+    //     Створити форму з наступними полями :
+    //     - назва товару
+    // - кількість товару
+    // - ціна товару
+    // - картинка товару (посилання з інтернету)
+    // Зберігати товари в масив в локалсорадж. При збережені товару з форми, action не повинно відбуватись (preventDefault)
+    // створити елемент <a href='list.html'> На сторінку товарів</a>, та list.html, при переході на який відобразити на сторінці всі товари.
+    // На сторінці  list.html побудувати кнопку яка видаляє всі товари з корзини та локалстораджа.
+    //     До кожного товару додати кнопку, при кліку на яку з лс видаляється конкретний обраний  товар
+
+    let titleOfProd = document.forms.product_form.title_inp;
+    let quantityOfProd = document.forms.product_form.quantity_inp;
+    let priceOfProd = document.forms.product_form.price_inp;
+    let imageOfProd = document.forms.product_form.image_inp;
+    let btnSaving = document.getElementById('save_products');
+    let productsNewPage = document.getElementById('products_newpage');
+
+    let savingProduct = (title,quantity,price,image) => {
+        let productsArray = JSON.parse(localStorage.getItem('products')) || [];
+        let date = new Date();
+        let product = {
+            title : title,
+            quantity : quantity,
+            price : price,
+            image : image,
+            id : date.getTime()
+        };
+        productsArray.push(product);
+        localStorage.setItem('products', JSON.stringify(productsArray));
+    }
+
+    btnSaving.onclick = () => {
+        savingProduct(titleOfProd.value, quantityOfProd.value, priceOfProd.value, imageOfProd.value)
+    }
+
+    productsNewPage.onclick = (event) => {
+        event.preventDefault();
+        window.open(productsNewPage);
+    }
+
+
+</script>
+</body>
+</html>

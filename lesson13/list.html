@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <style>
+        .products_box {
+            width: 100%;
+            padding: 20px;
+            background: cornflowerblue;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .card {
+            width: 300px;
+            background: aliceblue;
+            margin: 20px;
+            padding: 10px;
+        }
+        img {
+            width: 280px;
+        }
+        .btnDelAll {
+            background: orangered;
+            color: white;
+            font-weight: bold;
+            width: 200px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    let divProductsBox = document.createElement('div');
+    divProductsBox.classList.add('products_box');
+    let productsArray = JSON.parse(localStorage.getItem('products')) || [];
+    console.log(productsArray);
+    for (const product of productsArray) {
+        let card = document.createElement('div');
+        card.classList.add('card');
+        let titlePrice = document.createElement('div');
+        titlePrice.innerText = `${product.title} - ${product.price} грн`
+        let quantity = document.createElement('div');
+        quantity.innerText = `${product.quantity} шт(кг)`;
+        let image = document.createElement('img');
+        image.setAttribute('src', `${product.image}`);
+        let id = product.id;
+        let btnDelOne = document.createElement('button');
+        btnDelOne.classList.add('btnDelOne');
+        btnDelOne.innerText = 'Delete this position';
+        btnDelOne.onclick = () => {
+            // localStorage.removeItem();
+            card.style.display = 'none'
+        }
+
+        divProductsBox.appendChild(card);
+        card.append(titlePrice,quantity,image,btnDelOne)
+    }
+    let btnDelAll = document.createElement('button');
+    btnDelAll.innerText = 'Delete All Positions';
+    btnDelAll.classList.add('btnDelAll');
+    btnDelAll.onclick = () => {
+        localStorage.clear();
+        divProductsBox.style.display = 'none'
+    }
+
+    document.body.append(divProductsBox,btnDelAll);
+</script>
+
+</body>
+</html>
