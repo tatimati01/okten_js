@@ -14,7 +14,7 @@
             display: flex;
             flex-wrap: wrap;
             padding: 20px;
-            justify-content: space-between;
+            justify-content: center;
         }
 
         .userBox {
@@ -43,6 +43,15 @@
 <!--3 Добавить каждому блоку кнопку/ссылку , при клике на которую происходит переход на страницу user-details.html,-->
 <!--которая имеет детальную информацию про объект на который кликнули-->
 
+
+<!--Стилизация проекта - -->
+<!--index.html - все блоки с user - по 2 в ряд. кнопки/ссылки находяться под информацией про user.-->
+<!--user-details.html - блок с информацией про user вверху страницы. Кнопка ниже, на 90% ширины страницы, по центру.-->
+<!--блоки с краткой информацией про post - в ряд по 5 объектов.-->
+<!--post-details.html - блок с информацией про пост вверху. Комментарии - по 4 в ряд.-->
+<!--Все без исключения элементы, который характеризируют user,post,comment  визуализировать, так, что бы было видно-->
+<!--их блоки (дать задний фон + margin. Иными словами - крайне четкая сетка)-->
+
 <script>
     let mainContainer = document.createElement('div');
     mainContainer.classList.add('mainContainer');
@@ -54,18 +63,18 @@
             for (const user of usersArray) {
                 let userBox = document.createElement('div');
                 userBox.classList.add('userBox');
-                let userId = document.createElement('h3');
+                let userId = document.createElement('h2');
                 userId.innerText = `user id - ${user.id}`;
-                let userName = document.createElement('h2');
+                let userName = document.createElement('h1');
                 userName.innerText = `${user.name}`;
                 let linkDetails = document.createElement('a');
                 linkDetails.innerText = 'Go to user details...';
                 linkDetails.classList.add('link');
-                linkDetails.href = 'user-details.html';
-                linkDetails.onclick = () => {
-                    // localStorage.setItem('user', `${user}`);
-                }
 
+                linkDetails.onclick = () => {
+                    history.pushState(`${user.id}`, 'userId');
+                    location.href = `user-details.html?Id=${user.id}`;
+                }
 
                 mainContainer.appendChild(userBox);
                 userBox.append(userId, userName, linkDetails)
